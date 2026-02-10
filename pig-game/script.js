@@ -28,6 +28,31 @@ let activePlayer = 0;
 
 let playing = true;
 
+const resetGame = function() {
+    currentScore = 0;
+    activePlayer = 0;
+    playing = true; // Reset playing state
+    scores[0] = 0;
+    scores[1] = 0;
+    
+    // Reset all displays
+    score0Element.textContent = 0;
+    score1Element.textContent = 0;
+    current0Element.textContent = 0;
+    current1Element.textContent = 0;
+    
+    // Hide dice
+    diceElement.classList.add('hidden');
+    
+    // Remove winner class and reset to player 0 active
+    player0Element.classList.remove('player--winner');
+    player1Element.classList.remove('player--winner');
+    player0Element.classList.add('player--active');
+    player1Element.classList.remove('player--active');
+}
+
+btnNew.addEventListener('click', resetGame);
+
 const switchPlayer = function() {
     document.getElementById(`current--${activePlayer}`).textContent = 0;
     activePlayer = activePlayer === 0 ? 1 : 0;
